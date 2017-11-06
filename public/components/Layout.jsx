@@ -1,18 +1,20 @@
 import React,{Component} from 'react';
 import Header from './Header.jsx';
 import Footer from './Footer.jsx';
+import styles from '../css/main.css';
+
 export default class Layout extends  Component {
 	constructor(){
 		super();
-		console.log(this)
+		//console.log(this)
 	}
 	render(){
 		return(
-			<div className="col-md-12 col-lg-12 col-sm-12">
+			<main>
 				<Header/>
 					{this.props.children}
 				<Footer/>
-			</div>
+			</main>
 		)
 		
 	}
@@ -20,5 +22,6 @@ export default class Layout extends  Component {
 		if(window.location.hash === '#/'){
 			window.location.href="#/home";
 		}
+		//console.log(this)
 	}
 }

@@ -6,8 +6,10 @@ module.exports = {
     entry: BUILD_DIR + '/Main.jsx',
     output: {
         path: APP_DIR,
-        filename: '[name].js'
+        filename: '[name].js',
+        library: ['app']
     },
+    cache: false,
     module: {
         loaders: [{
             test: /.jsx?$/,

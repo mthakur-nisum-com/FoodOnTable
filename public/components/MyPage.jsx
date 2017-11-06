@@ -1,9 +1,9 @@
-import React from 'react';
+import React,{Component} from 'react';
 
-export default class MyPage extends React.Component {
+export default class MyPage extends Component {
 	render(){
 		return(
-			<section className="row">
+			<section>
 				My Page Component
 			</section>
 		)

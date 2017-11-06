@@ -1,11 +1,17 @@
-import React from 'react';
+import React,{Component} from 'react';
 
-export default class Home extends  React.Component {
+export default class Home extends  Component {
+	constructor(){
+		super();
+	}
 	render(){
 		return(
-			<section className="row">
+			<section>
 				Home
 			</section>
 		)
+	}
+	componentDidMount(){
+		
 	}
 }
