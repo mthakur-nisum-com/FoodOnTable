@@ -1,10 +1,13 @@
 import React from 'react';
-import {render} from 'react-dom';
+import ReactDOM from 'react-dom';
+import AppRouter  from './Router.jsx';
 export default class MainComponent extends React.Component {
 	render(){
 		return(
-			<div>hello world</div>
+			<div>
+				<AppRouter />
+			</div>
 		)
 	}
 }
-render(<MainComponent/>,document.getElementById('root'));
+ReactDOM.render(<MainComponent/>,document.getElementById('root'));

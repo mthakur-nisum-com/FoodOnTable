@@ -2,6 +2,7 @@ var webpack = require('webpack');
 var path = require('path');
 var BUILD_DIR = path.resolve(__dirname, 'public/components');
 var APP_DIR = path.resolve(__dirname, 'public/build');
+var ExtractTextPlugin = require('extract-text-webpack-plugin');
 module.exports = {
     entry: BUILD_DIR + '/Main.jsx',
     output: {
@@ -19,6 +20,8 @@ module.exports = {
         }, {
             test: /\.css$/,
             loader: "style-loader!css-loader"
+        }, {
+            test: /\.scss$/,
+            loader: ExtractTextPlugin.extract('css!sass')
         }]
-    }
 }
