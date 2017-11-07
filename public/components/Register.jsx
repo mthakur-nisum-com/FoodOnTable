@@ -1,4 +1,6 @@
 import React,{Component} from 'react';
+import actions from '../js/Actions/Actions';
+import { connect }  from 'react-redux';
  let _this;
  class Register extends Component {
  	constructor(){
@@ -12,7 +14,10 @@ import React,{Component} from 'react';
  		_this.state.registrationObj[this] =_this.refs[this].value;
  	}
  	handleClick(){
- 		console.log(this);
+ 		if(this.state.registrationObj){
+ 			this.props.dispatch(actions.registerUser(_this.state.registrationObj));
+ 			console.log(this.props)
+ 		}
  	}
  	render(){
  		return(
@@ -21,32 +26,26 @@ import React,{Component} from 'react';
 					<div className="row form-group">
 						<label htmlFor="firstName">First Name:</label>
 						<input type="text" id="firstName" className="form-control"  onChange={this.userValues.bind('firstName')} ref="firstName"/>
-						
 					</div>
 					<div className="row form-group">
-						<label htmlFor="lasttName">Last Name:</label>
-						<input type="text" id="lasttName" className="form-control"  onChange={this.userValues.bind('lasttName')} ref="lasttName"/>
-						
+						<label htmlFor="lastName">Last Name:</label>
+						<input type="text" id="lastName" className="form-control"  onChange={this.userValues.bind('lastName')} ref="lastName"/>
 					</div>
 					<div className="row form-group">
 						<label htmlFor="emailId">Email:</label>
 						<input type="email" id="emailId" className="form-control"  onChange={this.userValues.bind('emailId')} ref="emailId"/>
-						
 					</div>
 					<div className="row form-group">
 						<label htmlFor="password">Password:</label>
 						<input type="password" id="password" className="form-control"  onChange={this.userValues.bind('password')} ref="password"/>
-						
 					</div>
 					<div className="row form-group">
 						<label htmlFor="confirmPassword">Confirm Password:</label>
 						<input type="password" id="confirmPassword" className="form-control"  onChange={this.userValues.bind('confirmPassword')} ref="confirmPassword"/>
-						
 					</div>
 					<div className="row form-group">
 						<label htmlFor="phoneNumber">Phone No.</label>
 						<input type="text" id="phoneNumber" className="form-control"  onChange={this.userValues.bind('phoneNumber')} ref="phoneNumber"/>
-						
 					</div>
 					<div className="row form-group">
 						<label htmlFor="address">Communication Address:</label>
@@ -64,7 +63,17 @@ import React,{Component} from 'react';
  		this.setState({
  			registrationObj:{}
  		})
+ 		if(this.props.errorObj) {
+ 			console.log('hello')
+ 		}
  	}
 
  }
- export default Register;
+ const mapStateToProps= function (state){
+	return {
+		loginDetails:state.loginDetails,
+		errorObj:state.errorObj,
+		isRegisStrationSuccessFull:state.isRegisStrationSuccessFull,
+	}
+}
+ export default connect(mapStateToProps)(Register);

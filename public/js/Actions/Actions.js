@@ -6,10 +6,17 @@ export default {
 		}
 	},
 	validations:function(obj){
-		console.log(obj);
+	
 		return {
 			type:'validate',
 			obj:obj
+		}
+	},
+	registerUser:function(obj){
+		return {
+			type:'post',
+			url:location.origin+'/api/register',
+			requestObj:obj
 		}
 	}
 }

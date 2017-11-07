@@ -8,10 +8,11 @@ import Login from './Login.jsx';
 import Layout from './Layout.jsx';
 import Register from './Register.jsx';
 import $ from 'jquery';
-import { createStore } from 'redux';
+import { createStore,applyMiddleware  } from 'redux';
 import { Provider } from 'react-redux';
 import reducer from '../js/Reducer/reducer';
-const store = createStore(reducer,{friendList:[]});
+import thunk from 'redux-thunk';
+const store = createStore(reducer,{friendList:[]},applyMiddleware(thunk));
 export default class AppRouter extends Component {
 	render(){
 		return(

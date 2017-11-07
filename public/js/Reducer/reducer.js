@@ -1,6 +1,6 @@
 import axios from 'axios';
-
-export default (state = {}, action) => {
+import $ from 'jquery';
+export default (state, action) => {
     switch (action.type) {
         case 'get':
             return state;
@@ -21,8 +21,24 @@ export default (state = {}, action) => {
                 }
 
             }
-            return { loginDetails: action.obj, errorList: resultObj };
+            return { loginDetails: action.obj, errorObj: resultObj };
+        case 'post':
+        	let result=null;
+        	$.ajax({
+        		url:action.url,
+        		async:false,
+        		type:'post',
+        		data:action.requestObj,
+        		success:function(response){
+        			 result =response;
+
+        		}
+        	});
+        	console.log(result);
+        	state.isRegisStrationSuccessFull =result.errorMessage?false:true;
+        	state.errorObj = result;
+        	return {isRegisStrationSuccessFull :result.errorMessage?false:true,errorObj:result};
         default:
-            return {}
+            return {};
     }
 }

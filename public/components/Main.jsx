@@ -6,9 +6,7 @@ import AppRouter  from './Router.jsx';
 	render(){
 		return(
 			<div className="container-fluid" id="main-Container">
-				
-					<AppRouter />
-				
+				<AppRouter />
 			</div>
 		)
 	}

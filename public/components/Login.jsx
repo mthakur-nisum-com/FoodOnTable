@@ -22,7 +22,7 @@ class Login extends Component {
 	handleClick(){
 		console.log(Actions)
 		var result =_this.props.dispatch(Actions.validations(this.state.loginObj));
-		if(_this.props.errorList.length) {
+		if(_this.props.errorObj.length) {
 			console.log('hello')
 		}
 		
@@ -59,7 +59,7 @@ class Login extends Component {
 const mapStateToProps= function (state){
 	return {
 		loginDetails:state.loginDetails,
-		errorList:state.errorList
+		errorObj:state.errorObj
 	}
 }
 export default connect(mapStateToProps)(Login)
