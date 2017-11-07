@@ -28,6 +28,9 @@ class HeaderComponent extends Component {
 						      <li className="nav-item">
 						        <a href="#/login">login</a>
 						      </li>
+						      <li className="nav-item">
+						        <a href="#/register">register</a>
+						      </li>
 						    </ul>
 						 </div>
 					</nav>

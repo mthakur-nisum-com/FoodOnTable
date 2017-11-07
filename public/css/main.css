@@ -1,6 +1,6 @@
 body {
-	color: #FFF;
-	background: indigo;
+	color: #a1a1a1;
+	background: rgba(255,255,255,0.4);
 }
 #main-Container .header-section .app-header ul li {
 	list-style: none;
@@ -8,6 +8,6 @@ body {
 }
 #main-Container .header-section .app-header ul li:hover {
 	padding: 5px;
-	background: #FFF;
-	color: indigo
+	/*background: #FFF;*/
+	color: #f2f2f2;
 }

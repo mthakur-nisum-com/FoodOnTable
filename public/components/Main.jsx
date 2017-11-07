@@ -13,7 +13,7 @@ import AppRouter  from './Router.jsx';
 		)
 	}
 }
-export default {
+module.exports = {
 	renderComponent:function(elem){
 		ReactDOM.render(<MainComponent/>,document.getElementById(elem));
 	},
@@ -23,4 +23,3 @@ export default {
 		}
 	}
 }
-//

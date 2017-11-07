@@ -6,6 +6,7 @@ import Profile from './Profile.jsx';
 import MyPage from './myPage.jsx';
 import Login from './Login.jsx';
 import Layout from './Layout.jsx';
+import Register from './Register.jsx';
 import $ from 'jquery';
 import { createStore } from 'redux';
 import { Provider } from 'react-redux';
@@ -24,6 +25,7 @@ export default class AppRouter extends Component {
 								<Route path="/login" component={Login} />
 								<Route path="/profile" component={Profile} />
 								<Route path="/myPage" component={MyPage} />
+								<Route path="/register" component={Register} />
 							</section>
 						</Router>
 					</Layout>
