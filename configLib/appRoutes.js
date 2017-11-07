@@ -1,0 +1,22 @@
+module.exports ={
+	homePageHandler:function(req,res,next)(){
+		console.log(res);
+		res.end(200);
+	},
+	userRegistrationHandler:function(req,res,next){
+		console.log(req);
+		res.end(200);
+	},
+	userProfile:function(req,res,next)(){
+		console.log(req);
+		res.end(200);
+	},
+	appNotifications:function(req,res,next){
+		console.log(req);
+		res.end(200);
+	},
+	userLoginHanlder:function(req,res,next){
+		console.log(req);
+		res.end(200);
+	}
+}

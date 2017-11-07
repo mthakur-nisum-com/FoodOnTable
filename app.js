@@ -12,8 +12,9 @@ var express = require('express'),
     store = new MongoDBStore({
         uri: config.databaseConnectionUrl,
         collection: 'mySessions'
-    });
-
+    }),
+    appUrl = require('appUrls'),
+    appRoute = require('appRoutes');
 database.connect(config.databaseConnectionUrl, function(resultObj) {
     if (resultObj.status) {
         console.log('connected to database successfully !!!');
@@ -35,21 +36,11 @@ store.on('error', function(error) {
     assert.ifError(error);
     assert.ok(false);
 });
-app.get('/', function(req, res, next) {
-    console.log(req.session)
-    if (req.session.views) {
-        req.session.views++
-            res.setHeader('Content-Type', 'text/html')
-        res.write('<p>views: ' + req.session.views + '</p>')
-        res.write('<p>expires in: ' + (req.session.cookie.maxAge / 1000) + 's</p>')
-        res.end()
-    } else {
-        req.session.views = 1
-        res.end('welcome to the session demo. refresh!')
-    }
-    //console.log(req.app.get('env'));
-
-    //res.render('index.html');
-})
+app.get(appUrl.home,appRoute.homePageHandler); // handles '/' request
+app.post(appUrl.userLogin,appRoute.userLoginHanlder); // user login handler
+app.post(appUrl.userRegistration,appRoute.userRegistrationHandler); // user registration handler
+app.get(appUrl.userProfile,appRoute.userProfile); //  user profile handler
+app.put(appUrl.userProfile,appRoute.userProfil //  updated user profile handler
+app.get(appUrl.notifications,appRoute.appNotifications); //  notifications handler
 app.listen(port);
 console.log('listening to ' + port);
