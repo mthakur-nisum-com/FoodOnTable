@@ -1,44 +1,27 @@
-import axios from 'axios';
-import $ from 'jquery';
-export default (state, action) => {
+let result;
+const initialState = {
+    isRegistrationSuccessFull: false,
+    loginDetails: null,
+    resultObj: null,
+    userObj: null,
+    loginStatus: false,
+    profileInformation: null,
+    errorObj: null,
+    showLoader:false
+}
+export default (state = initialState, action) => {
     switch (action.type) {
         case 'get':
             return state;
-        case 'validate':
-            var resultObj = new Array(),
-                valid = false;
-            for (var keys in action.obj) {
-                if (action.obj[keys]) {
-                    valid = true;
-                } else {
-                    valid = false;
-                }
-                if (!valid) {
-                    resultObj.push({
-                        keyName: keys,
-                        valid: valid
-                    })
-                }
-
-            }
-            return { loginDetails: action.obj, errorObj: resultObj };
+        case 'handle_service':
+              return Object.assign({},state,{isRegisStrationSuccessFull:action.data.isRegistrationSuccessFull?action.data.isRegistrationSuccessFull:state.isRegistrationSuccessFull,errorObj:action.data.errorMsg,userObj:action.data.userObj});
         case 'post':
-        	let result=null;
-        	$.ajax({
-        		url:action.url,
-        		async:false,
-        		type:'post',
-        		data:action.requestObj,
-        		success:function(response){
-        			 result =response;
-
-        		}
-        	});
-        	console.log(result);
-        	state.isRegisStrationSuccessFull =result.errorMessage?false:true;
-        	state.errorObj = result;
-        	return {isRegisStrationSuccessFull :result.errorMessage?false:true,errorObj:result};
+            return state;
+       case 'show_loader':
+            return Object.assign({},state,{showLoader:true});
+        case 'hide_loader':
+            return Object.assign({},state,{showLoader:false});
         default:
-            return {};
+            return state;
     }
 }

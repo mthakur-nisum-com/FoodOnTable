@@ -1,6 +1,8 @@
 import React,{Component} from 'react';
 import actions from '../js/Actions/Actions';
 import { connect }  from 'react-redux';
+import Actions from '../js/Actions/Actions';
+import constants from '../js/constants/constants';
  let _this;
  class Register extends Component {
  	constructor(){
@@ -15,13 +17,13 @@ import { connect }  from 'react-redux';
  	}
  	handleClick(){
  		if(this.state.registrationObj){
- 			this.props.dispatch(actions.registerUser(_this.state.registrationObj));
+ 			this.props.dispatch({data:this.state.registrationObj,url:constants.registrationObj.url,requestType:constants.registrationObj.requestType,actionType:constants.registrationObj.actionType});
  			console.log(this.props)
  		}
  	}
  	render(){
  		return(
- 			<section className="col-lg-offset-3 col-md-offset-3">
+ 			<section className="col-lg-offset-3 col-md-offset-3 content-section">
 				<form className="col-lg-8 col-md-8 col-sm-12">
 					<div className="row form-group">
 						<label htmlFor="firstName">First Name:</label>
@@ -76,4 +78,11 @@ import { connect }  from 'react-redux';
 		isRegisStrationSuccessFull:state.isRegisStrationSuccessFull,
 	}
 }
- export default connect(mapStateToProps)(Register);
+const matchPropsToDisptach = (dispatch)=>{
+	return {
+		dispatch:function(userObj){
+			Actions.handleServiceRequest(dispatch,userObj);
+		}
+	}
+}
+ export default connect(mapStateToProps,matchPropsToDisptach)(Register);

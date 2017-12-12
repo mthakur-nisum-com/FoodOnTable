@@ -2,26 +2,39 @@ import React,{Component} from 'react';
 import Header from './Header.jsx';
 import Footer from './Footer.jsx';
 import styles from '../css/main.css';
-
-export default class Layout extends  Component {
+import { Provider,connect } from 'react-redux';
+import Loader from './Loader.jsx';
+ class Layout extends  Component {
 	constructor(){
 		super();
 		//console.log(this)
 	}
 	render(){
 		return(
-			<main>
-				<Header/>
-					{this.props.children}
-				<Footer/>
-			</main>
+			<div className="row">
+				<main className="container">
+					<Header/>
+						{this.props.children}
+					<Footer/>
+					<div className={this.props.showLoader?'loader-container':'collapse'}>
+						<Loader/>
+					</div>
+				</main>
+				
+			</div>
+
 		)
 		
 	}
 	componentDidMount(){
-		if(window.location.hash === '#/'){
-			window.location.href="#/home";
-		}
-		//console.log(this)
+		console.log(this)
 	}
 }
+const matchStateToProps=(state)=>{
+	return {
+		showLoader:state.showLoader
+	}
+}
+export default connect(matchStateToProps)(Layout)
+
+

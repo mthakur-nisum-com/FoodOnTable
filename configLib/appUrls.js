@@ -1,7 +1,8 @@
 module.exports={
 	home:'/',
-	userLogin:'/api/login',
-	userRegistration:'/api/register',
+	userLogin:'/login',
+	userRegistration:'/register',
 	userProfile:'/api/profile',
-	notifications:'/api/confitications'
+	notifications:'/api/notifications',
+	userLogOut:'/api/logOut'
 }

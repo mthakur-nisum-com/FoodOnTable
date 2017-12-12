@@ -1,19 +1,21 @@
 import React,{Component} from 'react';
 import BootStrapJs from 'bootstrap/js/src/collapse';
-import { connect }            from 'react-redux';
+import { connect } from 'react-redux';
+import actions from '../js/Actions/Actions';
+import constants from '../js/constants/constants';
 class HeaderComponent extends Component {
+	handleLogout(){
+		this.props.dispatch({username:this.props.userId,userEmail:this.props.userEmail,actionType:constants.logOutObj.actionType,url:constants.logOutObj.url,requestType:constants.logOutObj.requestType})
+	}
 	render(){
 		return (
 			<header className="row header-section">
 				
 				<section className="pull-left">
-					logo section
+					<a href="#" className="logo_section" title="Food at Table" alt="Food at Table">Food at Table</a>
 				</section>
 				<section className="pull-right">
 					<nav className="navbar navbar-expand-lg navbar-light bg-light app-header">
-						<button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-					   	 	<span className="navbar-toggler-icon"></span>
-					  	</button>
 						<div className="collapse navbar-collapse" id="navbarNav">
 							<ul className="navbar-nav">
 						      <li className="nav-item active">
@@ -25,10 +27,13 @@ class HeaderComponent extends Component {
 						      <li className="nav-item">
 						        <a href="#/myPage">myPage</a>
 						      </li>
-						      <li className="nav-item">
+						      <li className={this.props.userObj?'collapse':'nav-item'}>
 						        <a href="#/login">login</a>
 						      </li>
-						      <li className="nav-item">
+						      <li className={this.props.userObj?'nav-item':'collapse'}>
+						        <a href="javascript:void(0);" onClick={this.handleLogout.bind(this)}>logout</a>
+						      </li>
+						      <li className={this.props.userObj?'collapse':'nav-item'} >
 						        <a href="#/register">register</a>
 						      </li>
 						    </ul>
@@ -43,9 +48,16 @@ class HeaderComponent extends Component {
 		console.log(this.props)
 	}
 }
-const mapStateToProps= function (state){
+const mapStateToProps= (state)=>{
 	return {
-		userDetails:state.userDetails
+		userObj:state.userObj
 	}
 }
-export default connect(mapStateToProps)(HeaderComponent)
+const matchPropsToDispatch = (dispatch)=>{
+	return {
+		dispatch:function(userObj){
+			actions.handleServiceRequest(dispatch,userObj);
+		}
+	}
+}
+export default connect(mapStateToProps,matchPropsToDispatch)(HeaderComponent)
